@@ -3,7 +3,18 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Comment;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+
 
 class CommentCrudController extends AbstractCrudController
 {
@@ -12,7 +23,7 @@ class CommentCrudController extends AbstractCrudController
         return Comment::class;
     }
     
-/*     public function configureCrud(Crud $crud): Crud
+     public function configureCrud(Crud $crud): Crud
     {
         return $crud
             ->setEntityLabelInSingular('Conference Comment')
@@ -27,16 +38,16 @@ class CommentCrudController extends AbstractCrudController
         return $filters
             ->add(EntityFilter::new('conference'))
         ;
-    } */
+    } 
 
     
-    /* public function configureFields(string $pageName): iterable
+      public function configureFields(string $pageName): iterable
     {
-        return [
+     /*    return [
             IdField::new('id'),
             TextField::new('title'),
             TextEditorField::new('description'),
-        ];
+        ];  */
         yield AssociationField::new('conference');
                 yield TextField::new('author');
                 yield EmailField::new('email');
@@ -44,7 +55,7 @@ class CommentCrudController extends AbstractCrudController
             ->hideOnIndex()
         ;
         yield TextField::new('photoFilename')
-            ->onlyOnIndex()
+            
         ;
 
         $createdAt = DateTimeField::new('createdAt')->setFormTypeOptions([
@@ -57,6 +68,6 @@ class CommentCrudController extends AbstractCrudController
         } else {
             yield $createdAt;
         }
-    } */
+    }  
     
 }
